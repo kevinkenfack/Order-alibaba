@@ -206,17 +206,9 @@ export default function OrderSummary() {
           <div className="md:hidden space-y-4 p-4">
             {orderItems.map((item) => (
               <div key={item.id} className="border rounded-lg bg-white shadow-sm overflow-hidden">
-                {/* Header with item number and link */}
-                <div className="flex justify-between items-center p-3 bg-gray-50 border-b">
+                {/* Header with item number */}
+                <div className="p-3 bg-gray-50 border-b">
                   <span className="font-bold text-gray-800 text-lg">Item #{item.id}</span>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-600 text-white px-3 py-1 rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    View Product
-                  </a>
                 </div>
 
                 {/* Large image at top */}
@@ -230,7 +222,7 @@ export default function OrderSummary() {
 
                 {/* Product details below image */}
                 <div className="p-4 space-y-3">
-                  <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-500">Unit Price:</span>
                       <span className="font-semibold text-green-600">${item.unitPrice.toFixed(2)}</span>
@@ -239,9 +231,6 @@ export default function OrderSummary() {
                       <span className="text-gray-500">Quantity:</span>
                       <span className="font-medium">{item.quantity}</span>
                     </div>
-                  </div>
-
-                  <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-gray-500">Color:</span>
                       <span className="font-medium text-right">{item.color}</span>
@@ -252,12 +241,24 @@ export default function OrderSummary() {
                     </div>
                   </div>
 
-                  {/* Total at bottom with emphasis */}
+                  {/* Total with emphasis */}
                   <div className="border-t pt-3 mt-3">
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700 font-medium text-base">Total:</span>
                       <span className="text-xl font-bold text-blue-600">${item.total.toFixed(2)}</span>
                     </div>
+                  </div>
+
+                  {/* Button at bottom for better UX */}
+                  <div className="mt-3 flex justify-center">
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors w-full text-center"
+                    >
+                      View Product
+                    </a>
                   </div>
                 </div>
               </div>
