@@ -203,55 +203,61 @@ export default function OrderSummary() {
           </div>
 
           {/* Mobile Cards */}
-          <div className="md:hidden space-y-3 p-3">
+          <div className="md:hidden space-y-4 p-4">
             {orderItems.map((item) => (
-              <div key={item.id} className="border rounded-lg p-3 bg-white shadow-sm">
-                <div className="flex justify-between items-start mb-3">
-                  <span className="font-bold text-gray-800 text-lg">#{item.id}</span>
+              <div key={item.id} className="border rounded-lg bg-white shadow-sm overflow-hidden">
+                {/* Header with item number and link */}
+                <div className="flex justify-between items-center p-3 bg-gray-50 border-b">
+                  <span className="font-bold text-gray-800 text-lg">Item #{item.id}</span>
                   <a
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="bg-blue-600 text-white px-3 py-1 rounded-md text-xs font-medium hover:bg-blue-700 transition-colors"
                   >
-                    View
+                    View Product
                   </a>
                 </div>
 
-                <div className="flex gap-3 mb-3">
-                  <div className="h-20 w-20 flex-shrink-0 relative">
-                    <img
-                      src={item.image || "/placeholder.svg"}
-                      alt={`Product ${item.id}`}
-                      className="object-cover h-full w-full rounded-md border"
-                    />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="space-y-1">
-                      <div className="flex justify-between">
-                        <span className="text-gray-500 text-sm">Prix unitaire:</span>
-                        <span className="font-semibold text-green-600">${item.unitPrice.toFixed(2)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500 text-sm">Quantité:</span>
-                        <span className="font-medium">{item.quantity}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500 text-sm">Couleur:</span>
-                        <span className="font-medium text-sm truncate">{item.color}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-500 text-sm">Taille:</span>
-                        <span className="font-medium">{item.size}</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Large image at top */}
+                <div className="w-full h-48 relative bg-gray-100">
+                  <img
+                    src={item.image || "/placeholder.svg"}
+                    alt={`Product ${item.id}`}
+                    className="object-cover h-full w-full"
+                  />
                 </div>
 
-                <div className="border-t pt-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600 font-medium">Total:</span>
-                    <span className="text-lg font-bold text-blue-600">${item.total.toFixed(2)}</span>
+                {/* Product details below image */}
+                <div className="p-4 space-y-3">
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Unit Price:</span>
+                      <span className="font-semibold text-green-600">${item.unitPrice.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Quantity:</span>
+                      <span className="font-medium">{item.quantity}</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Color:</span>
+                      <span className="font-medium text-right">{item.color}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Size:</span>
+                      <span className="font-medium">{item.size}</span>
+                    </div>
+                  </div>
+
+                  {/* Total at bottom with emphasis */}
+                  <div className="border-t pt-3 mt-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-gray-700 font-medium text-base">Total:</span>
+                      <span className="text-xl font-bold text-blue-600">${item.total.toFixed(2)}</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -261,13 +267,13 @@ export default function OrderSummary() {
           <div className="border-t border-gray-200 p-4 md:p-6 bg-gradient-to-r from-gray-50 to-gray-100 rounded-b-lg">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="text-center sm:text-left">
-                <p className="text-sm text-gray-600">Total des articles: {orderItems.length}</p>
+                <p className="text-sm text-gray-600">Total Items: {orderItems.length}</p>
                 <p className="text-sm text-gray-600">
-                  Quantité totale: {orderItems.reduce((sum, item) => sum + item.quantity, 0)}
+                  Total Quantity: {orderItems.reduce((sum, item) => sum + item.quantity, 0)}
                 </p>
               </div>
               <div className="text-center sm:text-right">
-                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1">💰 Montant Total:</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1">💰 Total Amount:</h3>
                 <p className="text-2xl md:text-3xl font-bold text-green-600">${totalAmount.toFixed(2)} USD</p>
               </div>
             </div>
